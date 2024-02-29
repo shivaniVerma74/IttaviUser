@@ -1953,7 +1953,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'https://ittavi.developmentalphawizz.com/user_api/d_pincode.php'));
+            'https://admin.ittavi.in/user_api/d_pincode.php'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {

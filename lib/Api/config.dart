@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
 class Config {
-  static const String baseurl = 'https://ittavi.developmentalphawizz.com/';
+  // static const String baseurl = 'https://ittavi.developmentalphawizz.com/';
+  static const String baseurl = 'https://admin.ittavi.in/';
   static const String path = baseurl + 'user_api/';
 
   static const String imageUrl = baseurl ;

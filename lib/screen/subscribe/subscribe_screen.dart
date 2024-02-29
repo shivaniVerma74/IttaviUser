@@ -1089,7 +1089,7 @@ class _SubScribeScreenState extends State<SubScribeScreen> {
                                           /*controller.deliveries != ""*/controller.selectedMonth1.isNotEmpty
                                               ? "${controller.selectedMonth1.join(',')}"
                                               : "Select Delivery".tr,
-                                          style: TextStyle(
+                                           style: TextStyle(
                                             fontFamily: FontFamily.gilroyBold,
                                             color: controller.deliveries != ""
                                                 ? BlackColor
