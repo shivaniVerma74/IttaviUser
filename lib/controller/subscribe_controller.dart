@@ -51,6 +51,9 @@ class SubScibeController extends GetxController implements GetxService {
       selectedIndexes.add(day[index]);
       update();
     }
+    selectDay = '';
+    editDate ='';
+    update();
   }
 
   dailySelection() {
@@ -162,6 +165,7 @@ selectDay = '';
   int totalweekdaysCount = 0 ;
 
   finalDays(int month, int i) {
+
     //DateTime startDate = DateTime.parse(startDateController.text);
     // Calculate end date based on the selected month
     int selectedMonthNumber = month.toString().length==2 ? DateTime
@@ -169,9 +173,14 @@ selectDay = '';
         .month  : DateTime
         .parse('2024-0${month + 1}-01 00:00:00.000Z').month;
     endDate = DateTime(selectedDate!.year, selectedMonthNumber + 1, 0);
+
+
+
     if (selectedMonth.length > 1 && i != 0) {
       selectedDate = DateTime(selectedDate!.year, selectedMonthNumber, 1);
     }
+
+    totalweekdaysCount += countDaysInList(selectedDate!, endDate!, selectedIndexes);
     // Display the result
 
   }
@@ -214,7 +223,7 @@ selectDay = '';
     totalweekdaysCount = 0;
     for (int i = 0; i < selectedMonth.length; i++) {
       finalDays(selectedMonth[i], i);
-      if (whichDaySelected == '0') {
+      /*if (whichDaySelected == '0') {
         dailyDays(i);
       }
       else if (whichDaySelected == '1') {
@@ -222,8 +231,11 @@ selectDay = '';
       }
       else {
         wekenddays();
-      }
+      }*/
+
     }
+    deliveries = (totalweekdaysCount).toString();
+
   }
 
   dailyDays(int i) {
@@ -290,5 +302,22 @@ selectDay = '';
       result =
       'Weekends between ${_selectedDay?.toLocal()} and ${endDate!.toLocal()}: $weekendsCount days';
     });*/
+  }
+
+  int countDaysInList(DateTime startDate, DateTime endDate, List<String> dayList) {
+    int count = 0;
+
+    for (DateTime date = startDate; date.isBefore(endDate.add(Duration(days: 1))); date = date.add(Duration(days: 1))) {
+      if (dayList.contains(_getDayOfWeek(date))) {
+        count++;
+      }
+    }
+  //  DateTime date = startDate; date.isBefore(endDate) || date.isAtSameMomentAs(endDate); date = date.add(Duration(days: 1))
+    return count;
+  }
+
+  String _getDayOfWeek(DateTime date) {
+    List<String> days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    return days[date.weekday - 1];
   }
 }

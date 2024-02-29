@@ -94,6 +94,7 @@ class CartController extends GetxController implements GetxService {
         body: jsonEncode(map),
       );
       if (response.statusCode == 200) {
+        print('address______${response.body}');
         var result = jsonDecode(response.body);
         addressInfo = AddressInfo.fromJson(result);
       }
@@ -480,7 +481,7 @@ class CartController extends GetxController implements GetxService {
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         emptyAllDetailsInStore(pList1: cartViewList1);
-        showToastMessage(result["ResponseMsg"]);
+        // showToastMessage(result["ResponseMsg"]);
         OrderPlacedSuccessfully();
       }
     } catch (e) {
@@ -582,7 +583,7 @@ class CartController extends GetxController implements GetxService {
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         emptyAllDetailsInStore(pList1: cartViewList1);
-        showToastMessage(result["ResponseMsg"]);
+        // showToastMessage(result["ResponseMsg"]);
         OrderPlacedSuccessfully();
       }
       update();

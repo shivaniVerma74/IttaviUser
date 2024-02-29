@@ -210,13 +210,16 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                         onclick: () async {
                           try {
-                            PhoneAuthCredential credential =
+
+                            print('dsdadasdda____________   $code}');
+                            /*PhoneAuthCredential credential =
                                 PhoneAuthProvider.credential(
                               verificationId: ResetPasswordScreen.verifay,
                               smsCode: code,
-                            );
+                            );*/
+                           // print('${credential.signInMethod}');
                             // Sign the user in (or link) with the credential
-                            await auth.signInWithCredential(credential);
+                           // await auth.signInWithCredential(credential);
                             pinPutController.text = "";
                             if (rout == "signUpScreen") {
                               signUpController.setUserApiData(countryCode);

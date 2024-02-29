@@ -97,7 +97,7 @@ class _DeliveryAddress1State extends State<DeliveryAddress1> {
           children: [
             InkWell(
               onTap: () async {
-                /*var place = await PlacesAutocomplete.show(
+                var place = await PlacesAutocomplete.show(
                     context: context,
                     apiKey: Config.googleKey,
                     mode: Mode.overlay,
@@ -139,13 +139,13 @@ class _DeliveryAddress1State extends State<DeliveryAddress1> {
                     ),
                   );
                   setState(() {});
-                }*/
+                }
                 /*addLocationController.getCurrentLatAndLong(
                   lat,
                   lang,
                 );*/
               },
-              child: Container(
+              child: /*Container(
                 height: 50,
                 width: Get.size.width,
                 padding: EdgeInsets.symmetric(horizontal: 10),
@@ -157,8 +157,39 @@ class _DeliveryAddress1State extends State<DeliveryAddress1> {
                   borderRadius: BorderRadius.circular(15),
                   border: Border.all(color: Colors.grey.shade300),
                 ),
+              ),*/Container(
+                height: 50,
+                width: Get.size.width,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Image.asset(
+                        "assets/Search.png",
+                        height: 20,
+                        width: 20,
+                        color: Color(0xFF636268),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      location.toString(),
+                      style: TextStyle(
+                        fontFamily: FontFamily.gilroyMedium,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
               ),
-            ),
+      ),
+
             SizedBox(
               height: 15,
             ),
@@ -166,10 +197,10 @@ class _DeliveryAddress1State extends State<DeliveryAddress1> {
                 onPressed: () {
 
                 },
-                child: Text('Add'))
-            /*InkWell(
+                child: Text('Add')),
+            InkWell(
               onTap: () async {
-                *//*LocationPermission permission;
+                LocationPermission permission;
                 permission = await Geolocator.checkPermission();
                 permission = await Geolocator.requestPermission();
                 if (permission == LocationPermission.denied) {}
@@ -187,7 +218,7 @@ class _DeliveryAddress1State extends State<DeliveryAddress1> {
                 addLocationController.getCurrentLatAndLong(
                   currentLocation.latitude,
                   currentLocation.longitude,
-                );*//*
+                );
                 // addLocationController.addr =
                 //     '${addLocationController.address.street}, ${addLocationController.address.subLocality}, ${addLocationController.address.subAdministrativeArea}, ${addLocationController.address.postalCode}';
                 // addPropertiesController.getCurrentLatAndLong(
@@ -216,7 +247,7 @@ class _DeliveryAddress1State extends State<DeliveryAddress1> {
                   )
                 ],
               ),
-            )*/
+            )
           ],
         ),
       ),

@@ -59,8 +59,9 @@ class _onbordingState extends State<onbording> {
     setState(() {
       lat = currentLocation.latitude;
       long = currentLocation.longitude;
-      setScreen();
+
     });
+    setScreen();
   }
 
   setScreen() async {

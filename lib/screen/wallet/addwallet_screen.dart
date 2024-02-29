@@ -452,6 +452,7 @@ class _AddWalletScreenState extends State<AddWalletScreen> {
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 8),
                                       child: sugestlocationtype(
+
                                         borderColor: selectidPay ==
                                                 cartController.paymentInfo
                                                     ?.paymentdata[i].id
@@ -491,7 +492,23 @@ class _AddWalletScreenState extends State<AddWalletScreen> {
                                           value: i,
                                           groupValue: _groupValue,
                                           onChanged: (value) {
-                                            setState(() {});
+                                            setState(() {
+                                              razorpaykey = cartController
+                                                  .paymentInfo!
+                                                  .paymentdata[i]
+                                                  .attributes;
+                                              paymenttital = cartController
+                                                  .paymentInfo!
+                                                  .paymentdata[i]
+                                                  .title;
+                                              selectidPay = cartController
+                                                  .paymentInfo
+                                                  ?.paymentdata[i]
+                                                  .id ??
+                                                  "";
+                                              _groupValue = i;
+
+                                            });
                                           },
                                         ),
                                       ),

@@ -47,12 +47,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         elevation: 0,
         backgroundColor: WhiteColor,
         centerTitle: true,
-        leading: BackButton(
-          color: BlackColor,
-          onPressed: () {
-            Get.back();
-          },
-        ),
+        // leading: BackButton(
+        //   color: BlackColor,
+        //   onPressed: () {
+        //     Get.back();
+        //   },
+        // ),
         title: Text(
           "Profile".tr,
           style: TextStyle(

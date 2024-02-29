@@ -154,8 +154,7 @@ class _MySubscriptionInfoState extends State<MySubscriptionInfo> {
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
-                          itemCount: preScriptionControllre.sDetailsInfo
-                              ?.orderProductList.orderProductData.length,
+                          itemCount: preScriptionControllre.sDetailsInfo?.orderProductList.orderProductData.length,
                           padding: EdgeInsets.zero,
                           itemBuilder: (context, index) {
                             return InkWell(
@@ -731,12 +730,14 @@ class _MySubscriptionInfoState extends State<MySubscriptionInfo> {
                                     color: Colors.grey,
                                   ),
                                 ),
-                                Text(
-                                  "(${preScriptionControllre.sDetailsInfo?.orderProductList.orderTransactionId})",
-                                  style: TextStyle(
-                                    fontFamily: FontFamily.gilroyBold,
-                                    fontSize: 14,
-                                    color: Colors.grey,
+                                Expanded(
+                                  child: Text(
+                                    "${preScriptionControllre.sDetailsInfo?.orderProductList.orderTransactionId}",
+                                    style: TextStyle(
+                                      fontFamily: FontFamily.gilroyBold,
+                                      fontSize: 14,
+                                      color: Colors.grey,
+                                    ),
                                   ),
                                 )
                               ],
@@ -781,7 +782,7 @@ class _MySubscriptionInfoState extends State<MySubscriptionInfo> {
                             width: 5,
                           ),
                           SizedBox(
-                            width: Get.size.width * 0.72,
+                            width: Get.size.width * 0.6,
                             child: Column(
                               crossAxisAlignment:
                               CrossAxisAlignment.start,

@@ -40,24 +40,24 @@ class AddressInfo {
 
 class AddressList {
   AddressList({
-    required this.id,
-    required this.uid,
-    required this.address,
-    required this.landmark,
-    required this.rInstruction,
-    required this.aType,
-    required this.aLat,
-    required this.aLong,
+     this.id,
+     this.uid,
+     this.address,
+     this.landmark,
+     this.rInstruction,
+     this.aType,
+     this.aLat,
+     this.aLong,
   });
 
-  String id;
-  String uid;
-  String address;
-  String landmark;
-  String rInstruction;
-  String aType;
-  String aLat;
-  String aLong;
+  String? id;
+  String? uid;
+  String? address;
+  String? landmark;
+  String? rInstruction;
+  String? aType;
+  String? aLat;
+  String? aLong;
 
   factory AddressList.fromJson(Map<String, dynamic> json) => AddressList(
         id: json["id"],

@@ -123,7 +123,7 @@ class _WalletHistoryScreenState extends State<WalletHistoryScreen> {
             Expanded(
               child: GetBuilder<WalletController>(builder: (context) {
                 return walletController.isLoading
-                    ? walletController.walletInfo?.walletitem == true
+                    ? walletController.walletInfo?.walletitem.isNotEmpty ?? false
                         ? ListView.builder(
                             itemCount: walletController.walletInfo?.walletitem.length,
                             itemBuilder: (context, index) {

@@ -62,6 +62,7 @@ class _SubScribeScreenState extends State<SubScribeScreen> {
   void initState() {
     print("!!!!!!!!!++++++++" + sprice.toString());
     setupHive();
+
     productDetailsController.getDeliverysDayList(
         storeID: storeDataContoller.storeDataInfo?.storeInfo.storeId);
     productDetailsController.getTimeSlotListApi(
@@ -79,10 +80,14 @@ class _SubScribeScreenState extends State<SubScribeScreen> {
         subScibeController.deliveries = "";
         subScibeController.selectTime = "";
         subScibeController.editDate = "";
+        subScibeController.selectedMonth1 = [];
+
+
       });
       for (var i = 0; i < subScibeController.day.length; i++) {
         subScibeController.selectedIndexes.add(subScibeController.day[i]);
       }
+
     }
   }
 
@@ -1431,7 +1436,7 @@ class _SubScribeScreenState extends State<SubScribeScreen> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                         // subScibeController.addAndRemovedays(index);
+                          subScibeController.addAndRemovedays(index);
                         },
                         child: Container(
                           height: Get.size.height * 0.09,
@@ -1942,13 +1947,13 @@ class _SubScribeScreenState extends State<SubScribeScreen> {
       GetBuilder<SubScibeController>(builder: (context) {
         return StatefulBuilder(builder: (context, setState) {
           return Container(
-            height: Get.size.height * 0.6,
+            height: Get.size.height * 0.61,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 20,
+                    top: 10,
                     left: 20,
                   ),
                   child: Text(
@@ -1984,14 +1989,14 @@ class _SubScribeScreenState extends State<SubScribeScreen> {
                       rightChevronPadding: EdgeInsets.zero,
                       leftChevronPadding: EdgeInsets.zero,
                       titleTextStyle: TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         color: gradient.defoultColor,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
                     calendarStyle: CalendarStyle(
                       todayTextStyle: TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         color: Colors.white,
                       ),
                       selectedDecoration: BoxDecoration(
@@ -2039,9 +2044,7 @@ class _SubScribeScreenState extends State<SubScribeScreen> {
                     },
                   ),
                 ),
-                SizedBox(
-                  height: 15,
-                ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -2075,7 +2078,7 @@ class _SubScribeScreenState extends State<SubScribeScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
               ],
             ),

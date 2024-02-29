@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:milkman/Api/config.dart';
 import 'package:milkman/controller/cart_controller.dart';
@@ -259,6 +260,32 @@ class _CouponScreenState extends State<CouponScreen> {
                                           ),
                                           Text.rich(
                                             TextSpan(
+                                              text: 'Coupon Amount: '.tr,
+                                              style: TextStyle(
+                                                color: BlackColor,
+                                                fontFamily:
+                                                FontFamily.gilroyMedium,
+                                                fontSize: 15,
+                                              ),
+                                              children: <InlineSpan>[
+                                                TextSpan(
+                                                  text: cartController
+                                                      .cartDataInfo
+                                                      ?.couponList[index].couponVal ??
+                                                      "",
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontFamily:
+                                                    FontFamily.gilroyBold,
+                                                    color: BlackColor,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(height: 5,),
+                                          Text.rich(
+                                            TextSpan(
                                               text: 'Ex Date: '.tr,
                                               style: TextStyle(
                                                 color: BlackColor,
@@ -291,86 +318,40 @@ class _CouponScreenState extends State<CouponScreen> {
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              if (double.parse(
-                                                      price.toString()) >=
-                                                  double.parse(cartController
-                                                          .cartDataInfo
-                                                          ?.couponList[index]
-                                                          .minAmt ??
-                                                      "0")) {
-                                                cartController
-                                                    .checkCouponDataApi(
-                                                        cid: cartController
-                                                            .cartDataInfo
-                                                            ?.couponList[index]
-                                                            .id);
+                                              print("workingg");
+                                              if (double.parse(price.toString()) >= double.parse(cartController.cartDataInfo?.couponList[index].minAmt ?? "0") && double.parse(price.toString()) >= double.parse(cartController.cartDataInfo?.couponList[index].couponVal ?? "0")) {
+                                                cartController.checkCouponDataApi(cid: cartController.cartDataInfo?.couponList[index].id);
                                                 setState(() {
-                                                  cartController.couponAmt =
-                                                      double.parse(
-                                                          cartController
-                                                                  .cartDataInfo
-                                                                  ?.couponList[
-                                                                      index]
-                                                                  .couponVal ??
-                                                              "");
+                                                  cartController.couponAmt = double.parse(cartController.cartDataInfo?.couponList[index].couponVal ?? "");
                                                 });
-                                                total = total -
-                                                    cartController.couponAmt;
-                                                cartController.couponId =
-                                                    cartController
-                                                            .cartDataInfo
-                                                            ?.couponList[index]
-                                                            .id ??
-                                                        "";
-                                                Get.back(
-                                                    result: cartController
-                                                            .cartDataInfo
-                                                            ?.couponList[index]
-                                                            .couponCode ??
-                                                        "");
+                                                print("workingg2222");
+                                                total = total - cartController.couponAmt;
+                                                cartController.couponId = cartController.cartDataInfo?.couponList[index].id ?? "";
+                                                Get.back(result: cartController.cartDataInfo?.couponList[index].couponCode ?? "");
+                                                print("workingg33333");
+                                              }else {
+                                                Fluttertoast.showToast(msg: 'Invalid amount!');
                                               }
                                             },
                                             child: Container(
                                               height: 40,
                                               width: 150,
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 15),
+                                              padding: EdgeInsets.symmetric(horizontal: 15),
                                               alignment: Alignment.center,
                                               child: Text(
                                                 "Apply coupons".tr,
                                                 style: TextStyle(
-                                                  fontFamily:
-                                                      FontFamily.gilroyBold,
-                                                  color: double.parse(price
-                                                              .toString()) >=
-                                                          double.parse(cartController
-                                                                  .cartDataInfo
-                                                                  ?.couponList[
-                                                                      index]
-                                                                  .minAmt ??
-                                                              "0")
+                                                  fontFamily: FontFamily.gilroyBold,
+                                                  color: double.parse(price.toString()) >= double.parse(cartController.cartDataInfo?.couponList[index].minAmt ?? "0")
                                                       ? gradient.defoultColor
                                                       : Colors.grey.shade300,
                                                 ),
                                               ),
                                               decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                                border: double.parse(
-                                                            price.toString()) >=
-                                                        double.parse(
-                                                            cartController
-                                                                    .cartDataInfo
-                                                                    ?.couponList[
-                                                                        index]
-                                                                    .minAmt ??
-                                                                "0")
-                                                    ? Border.all(
-                                                        color: gradient
-                                                            .defoultColor)
-                                                    : Border.all(
-                                                        color: Colors
-                                                            .grey.shade300),
+                                                borderRadius: BorderRadius.circular(30),
+                                                border: double.parse(price.toString()) >= double.parse(cartController.cartDataInfo?.couponList[index].minAmt ??"0")
+                                                    ? Border.all(color: gradient.defoultColor)
+                                                    : Border.all(color: Colors.grey.shade300),
                                               ),
                                             ),
                                           ),

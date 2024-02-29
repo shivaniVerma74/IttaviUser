@@ -632,9 +632,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                                       ),
                                                       Row(
                                                         children: [
-                                                          Text(
-                                                            cartViewList[index].selectDelivery ??
-                                                                "",
+                                                          Text("Deliveries: ${cartViewList[index].selectDelivery ?? ""}",
                                                             style:
                                                             TextStyle(
                                                               fontFamily:
@@ -655,7 +653,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                                               color:
                                                               gradient.defoultColor,
                                                               fontSize:
-                                                              15,
+                                                              13,
                                                               fontFamily:
                                                               FontFamily.gilroyBold,
                                                             ),
@@ -691,7 +689,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                                   width: 5,
                                                 ),
                                                 Text(
-                                                  "${"Starting time on".tr} ${cartViewList[index].startTime}",
+                                                  "${"Delivery Time ".tr} ${cartViewList[index].startTime}",
                                                   style: TextStyle(
                                                     fontFamily:
                                                     FontFamily
@@ -1530,335 +1528,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                           })
                           : SizedBox()
                           : SizedBox(),
-                      //! ---------- Wallet Widget -----------!//
-                      wallet != "0"
-                          ? Container(
-                        height: 140,
-                        width: Get.size.width,
-                        margin: EdgeInsets.all(10),
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10),
-                        child: Column(
-                          mainAxisAlignment:
-                          MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  "Wallet information".tr,
-                                  style: TextStyle(
-                                    fontFamily:
-                                    FontFamily.gilroyBold,
-                                    fontSize: 17,
-                                    color: BlackColor,
-                                  ),
-                                ),
-                                // Spacer(),
-                                // Text(
-                                //   "Recharge".tr,
-                                //   style: TextStyle(
-                                //     fontFamily:
-                                //         FontFamily.gilroyBold,
-                                //     fontSize: 17,
-                                //     color:
-                                //         gradient.defoultColor,
-                                //   ),
-                                // ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                              height: 60,
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Image.asset(
-                                    "assets/wallet.png",
-                                    height: 30,
-                                    width: 30,
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    "${"Balance".tr} $currency${tempWallet.toStringAsFixed(2)}",
-                                    style: TextStyle(
-                                      fontFamily:
-                                      FontFamily.gilroyBold,
-                                      fontSize: 17,
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  Transform.scale(
-                                    scale: 0.8,
-                                    child: CupertinoSwitch(
-                                      activeColor:
-                                      gradient.defoultColor,
-                                      value: status,
-                                      onChanged: (value) {
-                                        setState(() {});
-                                        status = value;
-                                        walletCalculation(
-                                            value);
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                ],
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                BorderRadius.circular(10),
-                                border: Border.all(
-                                    color:
-                                    Colors.grey.shade300),
-                              ),
-                            ),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: WhiteColor,
-                          borderRadius:
-                          BorderRadius.circular(20),
-                        ),
-                      )
-                          : SizedBox(),
-                      //! ---------- Coupon Widget -----------!//
-                      Container(
-                        height: 150,
-                        width: Get.size.width,
-                        margin: EdgeInsets.all(10),
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: InkWell(
-                          onTap: () {
-                            if (couponCode == "") {
-                              status = false;
-                              walletCalculation(false);
-                              setState(() {});
-                              Get.toNamed(Routes.couponScreen,
-                                  arguments: {
-                                    "price": cartController.subTotal
-                                  })!
-                                  .then((value) {
-                                setState(() {
-                                  couponCode = value;
-                                });
-                                couponSucsessFullyApplyed();
-                              });
-                            } else {
-                              status = false;
-                              walletCalculation(false);
-                              setState(() {});
-                              // total = total + useWallet;
-                              // useWallet = 0;
-                              total =
-                                  total + cartController.couponAmt;
-                              cartController.couponAmt = 0;
-                              couponCode = "";
-                              setState(() {});
-                            }
-                          },
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Container(
-                                height: 60,
-                                alignment: Alignment.center,
-                                child: InkWell(
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        "assets/badge-discount.png",
-                                        height: 40,
-                                        width: 40,
-                                        color: gradient.defoultColor,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .center,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment
-                                              .start,
-                                          children: [
-                                            Text(
-                                              "Apply Coupon".tr,
-                                              style: TextStyle(
-                                                color: gradient
-                                                    .defoultColor,
-                                                fontFamily: FontFamily
-                                                    .gilroyBold,
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 4,
-                                            ),
-                                            couponCode != ""
-                                                ? Row(
-                                              children: [
-                                                Text(
-                                                  "Use code:"
-                                                      .tr,
-                                                  style:
-                                                  TextStyle(
-                                                    fontFamily:
-                                                    FontFamily
-                                                        .gilroyMedium,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  couponCode,
-                                                  style:
-                                                  TextStyle(
-                                                    fontFamily:
-                                                    FontFamily
-                                                        .gilroyBold,
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                                : SizedBox(),
-                                          ],
-                                        ),
-                                      ),
-                                      couponCode != ""
-                                          ? InkWell(
-                                        onTap: () {
-                                          status = false;
-                                          walletCalculation(
-                                              false);
-                                          setState(() {});
-                                          // total = total + useWallet;
-                                          // useWallet = 0;
-                                          total = total +
-                                              cartController
-                                                  .couponAmt;
-                                          cartController
-                                              .couponAmt = 0;
-                                          couponCode = "";
-                                          setState(() {});
-                                        },
-                                        child: Text(
-                                          "Remove".tr,
-                                          style: TextStyle(
-                                            fontFamily:
-                                            FontFamily
-                                                .gilroyBold,
-                                            color: RedColor,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      )
-                                          : InkWell(
-                                        onTap: () {
-                                          status = false;
-                                          walletCalculation(
-                                              false);
-                                          setState(() {});
-                                          // cartController.getCouponList(
-                                          //   sId: storeDataContoller
-                                          //           .storeDataInfo
-                                          //           ?.storeInfo
-                                          //           .storeId ??
-                                          //       "",
-                                          // );
-                                          Get.toNamed(
-                                              Routes
-                                                  .couponScreen,
-                                              arguments: {
-                                                "price":
-                                                cartController
-                                                    .subTotal
-                                              })!
-                                              .then((value) {
-                                            setState(() {
-                                              couponCode =
-                                                  value;
-                                            });
-                                            couponSucsessFullyApplyed();
-                                          });
-                                        },
-                                        child: Text(
-                                          "Apply".tr,
-                                          style: TextStyle(
-                                            fontFamily:
-                                            FontFamily
-                                                .gilroyBold,
-                                            color: gradient
-                                                .defoultColor,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Divider(),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              InkWell(
-                                onTap: () {},
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "View all coupons".tr,
-                                      style: TextStyle(
-                                        color: greyColor,
-                                        fontSize: 15,
-                                        fontFamily:
-                                        FontFamily.gilroyMedium,
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      size: 15,
-                                      color: greyColor,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                          color: WhiteColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
+
                       GetBuilder<CartController>(builder: (context) {
                         return Container(
                           width: Get.size.width,
@@ -2095,13 +1765,337 @@ class _YourCartScreenState extends State<YourCartScreen> {
                           ),
                         );
                       }),
-                      cartController.cartDataInfo?.storeData
-                          .storeIsPickup ==
-                          "1"
-                          ? groupValue == 0
-                          ? selfPickUpWidget()
-                          : deliveryWidget()
-                          : deliveryWidget(),
+                      cartController.cartDataInfo?.storeData.storeIsPickup == "1" ? groupValue == 0 ? selfPickUpWidget() : deliveryWidget() : deliveryWidget(),
+                      //! ---------- Wallet Widget -----------!//
+                      wallet != "0"
+                          ? Container(
+                        height: 140,
+                        width: Get.size.width,
+                        margin: EdgeInsets.all(10),
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10),
+                        child: Column(
+                          mainAxisAlignment:
+                          MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Wallet information".tr,
+                                  style: TextStyle(
+                                    fontFamily:
+                                    FontFamily.gilroyBold,
+                                    fontSize: 17,
+                                    color: BlackColor,
+                                  ),
+                                ),
+                                // Spacer(),
+                                // Text(
+                                //   "Recharge".tr,
+                                //   style: TextStyle(
+                                //     fontFamily:
+                                //         FontFamily.gilroyBold,
+                                //     fontSize: 17,
+                                //     color:
+                                //         gradient.defoultColor,
+                                //   ),
+                                // ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              height: 60,
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Image.asset(
+                                    "assets/wallet.png",
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    "${"Balance".tr} $currency${tempWallet.toStringAsFixed(2)}",
+                                    style: TextStyle(
+                                      fontFamily:
+                                      FontFamily.gilroyBold,
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Transform.scale(
+                                    scale: 0.8,
+                                    child: CupertinoSwitch(
+                                      activeColor:
+                                      gradient.defoultColor,
+                                      value: status,
+                                      onChanged: (value) {
+                                        setState(() {});
+                                        status = value;
+                                        walletCalculation(
+                                            value);
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                border: Border.all(
+                                    color:
+                                    Colors.grey.shade300),
+                              ),
+                            ),
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                          color: WhiteColor,
+                          borderRadius:
+                          BorderRadius.circular(20),
+                        ),
+                      )
+                          : SizedBox(),
+
+                      //! ---------- Coupon Widget -----------!//
+                      Container(
+                        height: 150,
+                        width: Get.size.width,
+                        margin: EdgeInsets.all(10),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: InkWell(
+                          onTap: () {
+                            if (couponCode == "") {
+                              status = false;
+                              walletCalculation(false);
+                              setState(() {});
+                              Get.toNamed(Routes.couponScreen,
+                                  arguments: {
+                                    "price": cartController.subTotal
+                                  })!
+                                  .then((value) {
+                                setState(() {
+                                  couponCode = value;
+                                });
+                                couponSucsessFullyApplyed();
+                              });
+                            } else {
+                              status = false;
+                              walletCalculation(false);
+                              setState(() {});
+                              // total = total + useWallet;
+                              // useWallet = 0;
+                              total =
+                                  total + cartController.couponAmt;
+                              cartController.couponAmt = 0;
+                              couponCode = "";
+                              setState(() {});
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                height: 60,
+                                alignment: Alignment.center,
+                                child: InkWell(
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        "assets/badge-discount.png",
+                                        height: 40,
+                                        width: 40,
+                                        color: gradient.defoultColor,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment
+                                              .center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .start,
+                                          children: [
+                                            Text(
+                                              "Apply Coupon".tr,
+                                              style: TextStyle(
+                                                color: gradient
+                                                    .defoultColor,
+                                                fontFamily: FontFamily
+                                                    .gilroyBold,
+                                                fontSize: 18,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 4,
+                                            ),
+                                            couponCode != ""
+                                                ? Row(
+                                              children: [
+                                                Text(
+                                                  "Use code:"
+                                                      .tr,
+                                                  style:
+                                                  TextStyle(
+                                                    fontFamily:
+                                                    FontFamily
+                                                        .gilroyMedium,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  couponCode,
+                                                  style:
+                                                  TextStyle(
+                                                    fontFamily:
+                                                    FontFamily
+                                                        .gilroyBold,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                                : SizedBox(),
+                                          ],
+                                        ),
+                                      ),
+                                      couponCode != ""
+                                          ? InkWell(
+                                        onTap: () {
+                                          status = false;
+                                          walletCalculation(
+                                              false);
+                                          setState(() {});
+                                          // total = total + useWallet;
+                                          // useWallet = 0;
+                                          total = total +
+                                              cartController
+                                                  .couponAmt;
+                                          cartController
+                                              .couponAmt = 0;
+                                          couponCode = "";
+                                          setState(() {});
+                                        },
+                                        child: Text(
+                                          "Remove".tr,
+                                          style: TextStyle(
+                                            fontFamily:
+                                            FontFamily
+                                                .gilroyBold,
+                                            color: RedColor,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      )
+                                          : InkWell(
+                                        onTap: () {
+                                          status = false;
+                                          walletCalculation(
+                                              false);
+                                          setState(() {});
+                                          // cartController.getCouponList(
+                                          //   sId: storeDataContoller
+                                          //           .storeDataInfo
+                                          //           ?.storeInfo
+                                          //           .storeId ??
+                                          //       "",
+                                          // );
+                                          Get.toNamed(
+                                              Routes
+                                                  .couponScreen,
+                                              arguments: {
+                                                "price":
+                                                cartController
+                                                    .subTotal
+                                              })!
+                                              .then((value) {
+                                            setState(() {
+                                              couponCode =
+                                                  value;
+                                            });
+                                            couponSucsessFullyApplyed();
+                                          });
+                                        },
+                                        child: Text(
+                                          "Apply".tr,
+                                          style: TextStyle(
+                                            fontFamily:
+                                            FontFamily
+                                                .gilroyBold,
+                                            color: gradient
+                                                .defoultColor,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Divider(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () {},
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "View all coupons".tr,
+                                      style: TextStyle(
+                                        color: greyColor,
+                                        fontSize: 15,
+                                        fontFamily:
+                                        FontFamily.gilroyMedium,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 15,
+                                      color: greyColor,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: WhiteColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -2143,8 +2137,11 @@ class _YourCartScreenState extends State<YourCartScreen> {
                             ? InkWell(
                           onTap: () {
                             if (widget.CartStatus == "1") {
+
                               if (cartViewList[0].cartCheck ==
                                   "0") {
+
+
                                 if (int.parse(
                                     "${cartController.cartDataInfo?.storeData.storeMorder}") <=
                                     cartController.subTotal) {
@@ -2162,6 +2159,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                           .storeIsDeliver ==
                                           "1") {
                                         if (status == true) {
+
                                           if (double.parse(total
                                               .toString()) >
                                               0) {
@@ -2178,8 +2176,17 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                             }
                                           }
                                         } else {
-                                          paymentSheett();
-                                        }
+                                          print('${double.parse(total
+                                              .toString())}');
+
+                                          if (double.parse(total
+                                              .toString()) >
+                                              0) {paymentSheett();}
+                                          else {
+                                            buyNormalOrderInStore(
+                                                "0");
+                                          }
+                                                        }
                                       } else {
                                         setState(() {
                                           cartController
@@ -2200,17 +2207,19 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                       "${"A minimum cart total of".tr} ${cartController.cartDataInfo?.storeData.storeMorder} ${"is required for this order.".tr}");
                                 }
                               } else {
+
                                 if (int.parse(
                                     "${cartController.cartDataInfo?.storeData.storeMorder}") <=
                                     cartController.subTotal) {
-                                  if (/*cartController
+                                  if (cartController
                                       .addresTitle ==
-                                      ""*/address.text.isEmpty) {
-                                    /*cartController
+                                      "") {
+                                    cartController
                                         .addressListApi();
-                                    addressShit();*/
+                                    addressShit();
                                     Fluttertoast.showToast(msg: 'add Address');
                                   } else {
+
                                     if (cartController
                                         .cartDataInfo
                                         ?.storeData
@@ -2291,7 +2300,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 5),
                             alignment: Alignment.center,
-                            child: address.text ==
+                            child: cartController.addresTitle ==
                                 ""
                                 ? Text(
                               "Add Address".tr,
@@ -2346,7 +2355,15 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                         }
                                       }
                                     } else {
-                                      paymentSheett();
+                                      if (double.parse(total
+                                          .toString()) >
+                                          0) {
+                                        paymentSheett();}
+                                      else {
+                                        buyNormalOrderInStore(
+                                            "0");
+                                      }
+
                                     }
                                   } else {
                                     showToastMessage(
@@ -2358,6 +2375,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                       .addresTitle !=
                                       "") {
                                     if (status == true) {
+
                                       if (double.parse(total
                                           .toString()) >
                                           0) {
@@ -2374,6 +2392,8 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                         }
                                       }
                                     } else {
+
+
                                       paymentSheett();
                                     }
                                   } else {
@@ -2871,7 +2891,11 @@ class _YourCartScreenState extends State<YourCartScreen> {
                   InkWell(
                     onTap: () {
                       Get.back();
-                      Get.toNamed(Routes.deliveryaddress1);
+                      Get.toNamed(Routes.addressDetailsScreen)?.then((value) {
+                        cartController
+                            .addressListApi();
+                        addressShit();
+                      });
                     },
                     child: Row(
                       children: [
@@ -3100,7 +3124,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
               SizedBox(
                 width: 10,
               ),
-              Container(
+              /*Container(
                 height: 50,
                 width: Get.size.width/1.2,
                 padding: EdgeInsets.symmetric(horizontal: 10),
@@ -3114,8 +3138,8 @@ class _YourCartScreenState extends State<YourCartScreen> {
                   borderRadius: BorderRadius.circular(15),
                   border: Border.all(color: Colors.grey.shade300),
                 ),
-              ),
-              /*Expanded(
+              ),*/
+              Expanded(
                 child: GetBuilder<CartController>(builder: (context) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -3183,7 +3207,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                     border: Border.all(color: Colors.grey.shade300),
                   ),
                 ),
-              )*/
+              )
             ],
           ),
           SizedBox(
@@ -3196,8 +3220,8 @@ class _YourCartScreenState extends State<YourCartScreen> {
             height: 15,
           ),
           Text(
-            "${"The order delivery is managed by".tr} ${storeDataContoller.storeDataInfo?.storeInfo.storeTitle ?? ""}. ${"Orders are usually dispatched in 3 - 5 day".tr}",
-            maxLines: 2,
+            "${"The order delivery is managed by".tr} ${storeDataContoller.storeDataInfo?.storeInfo.storeTitle ?? ""}. ${"Orders will be delivered within the time slot on the date selected".tr}",
+            maxLines: 3,
             style: TextStyle(
               fontFamily: FontFamily.gilroyMedium,
               fontSize: 15,
@@ -3255,7 +3279,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
                           height: 10,
                         ),
                         Text(
-                          "You required to collect medicine from Below address"
+                          "You required to collect orders from Below address"
                               .tr,
                           maxLines: 2,
                           style: TextStyle(
@@ -3754,7 +3778,22 @@ class _YourCartScreenState extends State<YourCartScreen> {
                                   value: i,
                                   groupValue: _groupValue,
                                   onChanged: (value) {
-                                    setState(() {});
+                                    setState(() {
+                                      razorpaykey = cartController
+                                          .cartDataInfo!
+                                          .paymentData[i]
+                                          .attributes;
+                                      paymenttital = cartController
+                                          .cartDataInfo!
+                                          .paymentData[i]
+                                          .title;
+                                      selectidPay = cartController
+                                          .cartDataInfo!
+                                          .paymentData[i]
+                                          .id;
+                                      _groupValue = i;
+
+                                    });
                                   },
                                 ),
                               ),
@@ -3967,7 +4006,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
       storeCharge:
       cartController.cartDataInfo?.storeData.storeCharge.toString() ?? "",
       subTotal: cartController.subTotal.toString(),
-      total: getTotal.toString(),
+      total:total.toString(), //getTotal.toString(),
       otid: otid.toString(),
       ndate: formattedDate,
       wallAmt: useWallet.toString(),
@@ -4005,7 +4044,7 @@ class _YourCartScreenState extends State<YourCartScreen> {
       storeCharge:
       "${double.parse(cartController.cartDataInfo?.storeData.storeCharge.toString() ?? "") * getMaxDelivery}",
       subTotal: cartController.subTotal.toString(),
-      total: getTotal.toString(),
+      total: total.toString(),//getTotal.toString(),
       otid: otid.toString(),
       walAmt: useWallet.toString(),
       couId: cartController.couponId != ""

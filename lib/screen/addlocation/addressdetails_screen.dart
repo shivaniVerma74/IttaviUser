@@ -31,7 +31,8 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    loadData();
+    addLocationController.completeAddress.clear();
+    // loadData();
   }
 
   Future<Uint8List> getImages(String path, int width) async {
@@ -88,36 +89,36 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        actions: [
-          Container(
-            height: 50,
-            width: 40,
-            alignment: Alignment.center,
-            child: Text.rich(
-              TextSpan(
-                text: '3',
-                style: TextStyle(
-                  color: BlackColor,
-                  fontFamily: FontFamily.gilroyBold,
-                  fontSize: 17,
-                ),
-                children: <InlineSpan>[
-                  TextSpan(
-                    text: '/3',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: FontFamily.gilroyMedium,
-                      color: greyColor,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-        ],
+        // actions: [
+        //   Container(
+        //     height: 50,
+        //     width: 40,
+        //     alignment: Alignment.center,
+        //     child: Text.rich(
+        //       TextSpan(
+        //         text: '3',
+        //         style: TextStyle(
+        //           color: BlackColor,
+        //           fontFamily: FontFamily.gilroyBold,
+        //           fontSize: 17,
+        //         ),
+        //         children: <InlineSpan>[
+        //           TextSpan(
+        //             text: '/3',
+        //             style: TextStyle(
+        //               fontSize: 14,
+        //               fontFamily: FontFamily.gilroyMedium,
+        //               color: greyColor,
+        //             ),
+        //           )
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        //   SizedBox(
+        //     width: 10,
+        //   ),
+        // ],
       ),
       bottomNavigationBar: InkWell(
         onTap: () {
@@ -155,9 +156,9 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
             key: _formKey,
             child: Column(
               children: [
-                Stack(
+                /*Stack(
                   children: [
-                    Container(
+                    *//*Container(
                       height: 240,
                       width: Get.size.width,
                       margin: EdgeInsets.symmetric(horizontal: 10),
@@ -189,7 +190,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                         borderRadius: BorderRadius.circular(15),
                         color: WhiteColor,
                       ),
-                    ),
+                    ),*//*
                     Positioned(
                       bottom: 10,
                       right: 20,
@@ -245,7 +246,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                       ),
                     )
                   ],
-                ),
+                )*/
                 Container(
                   margin: EdgeInsets.all(15),
                   alignment: Alignment.center,
@@ -285,148 +286,148 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                     border: Border.all(color: Colors.grey.shade300),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: TextFormField(
-                    controller: addLocationController.landMark,
-                    keyboardType: TextInputType.multiline,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    textInputAction: TextInputAction.done,
-                    cursorColor: BlackColor,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      hintText: "Landmark".tr,
-                      hintStyle: TextStyle(
-                        fontFamily: FontFamily.gilroyMedium,
-                        fontSize: 15,
-                      ),
-                    ),
-                    style: TextStyle(
-                      fontFamily: FontFamily.gilroyMedium,
-                      fontSize: 16,
-                      color: BlackColor,
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter Landmark'.tr;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(15),
-                  alignment: Alignment.center,
-                  child: TextFormField(
-                    controller: addLocationController.reach,
-                    minLines: 5,
-                    keyboardType: TextInputType.multiline,
-                    textInputAction: TextInputAction.done,
-                    maxLines: null,
-                    cursorColor: BlackColor,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
-                      focusedBorder: InputBorder.none,
-                      border: InputBorder.none,
-                      hintText: "How to reach instructions (Optional)".tr,
-                      hintStyle: TextStyle(
-                        fontFamily: FontFamily.gilroyMedium,
-                        fontSize: 15,
-                      ),
-                    ),
-                    style: TextStyle(
-                      fontFamily: FontFamily.gilroyMedium,
-                      fontSize: 16,
-                      color: BlackColor,
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                    color: WhiteColor,
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.grey.shade300),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  alignment: Alignment.topLeft,
-                  padding: EdgeInsets.only(left: 17),
-                  child: Text(
-                    "Save address as".tr,
-                    style: TextStyle(
-                      color: BlackColor,
-                      fontFamily: FontFamily.gilroyBold,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: TextFormField(
-                    controller: addLocationController.homeAddress,
-                    keyboardType: TextInputType.multiline,
-                    cursorColor: BlackColor,
-                    textInputAction: TextInputAction.done,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      hintText: "Eg: Home, Store".tr,
-                      hintStyle: TextStyle(
-                        fontFamily: FontFamily.gilroyMedium,
-                        fontSize: 15,
-                      ),
-                    ),
-                    style: TextStyle(
-                      fontFamily: FontFamily.gilroyMedium,
-                      fontSize: 16,
-                      color: BlackColor,
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter save address as'.tr;
-                      }
-                      return null;
-                    },
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 15),
+                //   child: TextFormField(
+                //     controller: addLocationController.landMark,
+                //     keyboardType: TextInputType.multiline,
+                //     autovalidateMode: AutovalidateMode.onUserInteraction,
+                //     textInputAction: TextInputAction.done,
+                //     cursorColor: BlackColor,
+                //     decoration: InputDecoration(
+                //       focusedBorder: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(15),
+                //         borderSide: BorderSide(
+                //           color: Colors.grey.shade300,
+                //         ),
+                //       ),
+                //       border: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(15),
+                //         borderSide: BorderSide(
+                //           color: Colors.grey.shade300,
+                //         ),
+                //       ),
+                //       enabledBorder: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(15),
+                //         borderSide: BorderSide(
+                //           color: Colors.grey.shade300,
+                //         ),
+                //       ),
+                //       hintText: "Landmark".tr,
+                //       hintStyle: TextStyle(
+                //         fontFamily: FontFamily.gilroyMedium,
+                //         fontSize: 15,
+                //       ),
+                //     ),
+                //     style: TextStyle(
+                //       fontFamily: FontFamily.gilroyMedium,
+                //       fontSize: 16,
+                //       color: BlackColor,
+                //     ),
+                //     validator: (value) {
+                //       if (value == null || value.isEmpty) {
+                //         return 'Please enter Landmark'.tr;
+                //       }
+                //       return null;
+                //     },
+                //   ),
+                // ),
+                // Container(
+                //   margin: EdgeInsets.all(15),
+                //   alignment: Alignment.center,
+                //   child: TextFormField(
+                //     controller: addLocationController.reach,
+                //     minLines: 5,
+                //     keyboardType: TextInputType.multiline,
+                //     textInputAction: TextInputAction.done,
+                //     maxLines: null,
+                //     cursorColor: BlackColor,
+                //     decoration: InputDecoration(
+                //       contentPadding: EdgeInsets.all(10),
+                //       focusedBorder: InputBorder.none,
+                //       border: InputBorder.none,
+                //       hintText: "How to reach instructions (Optional)".tr,
+                //       hintStyle: TextStyle(
+                //         fontFamily: FontFamily.gilroyMedium,
+                //         fontSize: 15,
+                //       ),
+                //     ),
+                //     style: TextStyle(
+                //       fontFamily: FontFamily.gilroyMedium,
+                //       fontSize: 16,
+                //       color: BlackColor,
+                //     ),
+                //   ),
+                //   decoration: BoxDecoration(
+                //     color: WhiteColor,
+                //     borderRadius: BorderRadius.circular(15),
+                //     border: Border.all(color: Colors.grey.shade300),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 5,
+                // ),
+                // Container(
+                //   alignment: Alignment.topLeft,
+                //   padding: EdgeInsets.only(left: 17),
+                //   child: Text(
+                //     "Save address as".tr,
+                //     style: TextStyle(
+                //       color: BlackColor,
+                //       fontFamily: FontFamily.gilroyBold,
+                //       fontSize: 15,
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 10,
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 15),
+                //   child: TextFormField(
+                //     controller: addLocationController.homeAddress,
+                //     keyboardType: TextInputType.multiline,
+                //     cursorColor: BlackColor,
+                //     textInputAction: TextInputAction.done,
+                //     autovalidateMode: AutovalidateMode.onUserInteraction,
+                //     decoration: InputDecoration(
+                //       focusedBorder: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(15),
+                //         borderSide: BorderSide(
+                //           color: Colors.grey.shade300,
+                //         ),
+                //       ),
+                //       border: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(15),
+                //         borderSide: BorderSide(
+                //           color: Colors.grey.shade300,
+                //         ),
+                //       ),
+                //       enabledBorder: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(15),
+                //         borderSide: BorderSide(
+                //           color: Colors.grey.shade300,
+                //         ),
+                //       ),
+                //       hintText: "Eg: Home, Store".tr,
+                //       hintStyle: TextStyle(
+                //         fontFamily: FontFamily.gilroyMedium,
+                //         fontSize: 15,
+                //       ),
+                //     ),
+                //     style: TextStyle(
+                //       fontFamily: FontFamily.gilroyMedium,
+                //       fontSize: 16,
+                //       color: BlackColor,
+                //     ),
+                //     validator: (value) {
+                //       if (value == null || value.isEmpty) {
+                //         return 'Please enter save address as'.tr;
+                //       }
+                //       return null;
+                //     },
+                //   ),
+                // ),
                 SizedBox(
                   height: 20,
                 ),

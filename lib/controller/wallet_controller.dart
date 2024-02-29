@@ -38,6 +38,7 @@ class WalletController extends GetxController implements GetxService {
         uri,
         body: jsonEncode(map),
       );
+      print('${response.body}');
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         walletInfo = WalletInfo.fromJson(result);

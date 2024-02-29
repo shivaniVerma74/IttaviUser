@@ -34,11 +34,11 @@ class AddLocationController extends GetxController implements GetxService {
       Map map = {
         "uid": getData.read("UserLogin")["id"],
         "address": completeAddress.text,
-        "lats": lat.toString(),
-        "longs": long.toString(),
-        "a_type": homeAddress.text,
-        "landmark": landMark.text,
-        "r_instruction": reach.text != "" ? reach.text : "",
+        // "lats": lat.toString(),
+        // "longs": long.toString(),
+        // "a_type": homeAddress.text,
+        // "landmark": landMark.text,
+        // "r_instruction": reach.text != "" ? reach.text : "",
       };
       Uri uri = Uri.parse(Config.path + Config.addAddress);
       var response = await http.post(
@@ -49,12 +49,13 @@ class AddLocationController extends GetxController implements GetxService {
         var result = jsonDecode(response.body);
         if (result["Result"] == "true") {
           showToastMessage(result["ResponseMsg"]);
-          catDetailsController.changeIndex(3);
-          Get.offAndToNamed(Routes.bottombarProScreen);
-          completeAddress.text = "";
-          landMark.text = "";
-          reach.text = "";
-          homeAddress.text = "";
+          catDetailsController.changeIndex(2);
+          /*Get.offAndToNamed(Routes.bottombarProScreen);
+          completeAddress.text = "";*/
+          Get.back();
+          // landMark.text = "";
+          // reach.text = "";
+          // homeAddress.text = "";
         } else {
           showToastMessage(result["ResponseMsg"]);
         }

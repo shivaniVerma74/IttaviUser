@@ -149,9 +149,7 @@ class _AboutScreenState extends State<AboutScreen>
   }
 
   Widget overViewWidget() {
-    List<String> stringList = storeDataContoller
-        .storeDataInfo!.storeInfo.storeCanclePolicy
-        .split(". ");
+    List<String> stringList = storeDataContoller.storeDataInfo!.storeInfo.storeCanclePolicy.split(". ");
     return GetBuilder<StoreDataContoller>(builder: (context) {
       return storeDataContoller.isLoading
           ? Container(
@@ -174,8 +172,7 @@ class _AboutScreenState extends State<AboutScreen>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  storeDataContoller.storeDataInfo?.storeInfo
-                                          .storeTitle ??
+                                  storeDataContoller.storeDataInfo?.storeInfo.storeTitle ??
                                       "",
                                   style: TextStyle(
                                     color: BlackColor,
@@ -327,20 +324,20 @@ class _AboutScreenState extends State<AboutScreen>
                       ),
                       catDRow(
                         img: "assets/box.png",
-                        text: "Delivery across your zone".tr,
+                        text: "Delivery across the pincodes listed on the shop page.".tr,
                       ),
                       catDRow(
                         img: "assets/clock.png",
-                        text: "Usually dispatches orders on the same day".tr,
+                        text: "Usually dispatches orders strictly on the choosen Day and Slot.".tr,
                       ),
                       catDRow(
                         img: "assets/star.png",
-                        text: "Delivery fee will apply".tr,
+                        text: "Free Delivery on all orders.".tr,
                       ),
                       catDRow(
                         img: "assets/shopping-bag-alt.png",
                         text:
-                            "${"All orders will be Delivered by".tr} ${storeDataContoller.storeDataInfo?.storeInfo.storeTitle ?? ""}",
+                            "${"All orders will be delivered by ITTAVI.".tr} ",//${storeDataContoller.storeDataInfo?.storeInfo.storeTitle ?? ""}
                       ),
                       SizedBox(
                         height: 20,
@@ -367,9 +364,9 @@ class _AboutScreenState extends State<AboutScreen>
                               stringList[index],
                               textStyle: TextStyle(
                                 color: BlackColor,
-                                fontSize: 15,
-                                overflow: TextOverflow.ellipsis,
                                 fontFamily: FontFamily.gilroyMedium,
+                                fontSize: 14,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           );
@@ -416,10 +413,23 @@ class _AboutScreenState extends State<AboutScreen>
                       SizedBox(
                         height: 5,
                       ),
+                      /*catDRow(
+                        img: "assets/clock.png",
+                        text:
+                            "${DateFormat.jm().format(DateTime.parse("2024-03-20T${storeDataContoller.storeDataInfo?.storeInfo.storeOpentime ?? ""}"))} to ${DateFormat.jm().format(DateTime.parse("2024-03-20T${storeDataContoller.storeDataInfo?.storeInfo.storeClosetime ?? ""}"))}",
+                      ),*/
                       catDRow(
                         img: "assets/clock.png",
                         text:
-                            "${DateFormat.jm().format(DateTime.parse("2023-03-20T${storeDataContoller.storeDataInfo?.storeInfo.storeOpentime ?? ""}"))} to ${DateFormat.jm().format(DateTime.parse("2023-03-20T${storeDataContoller.storeDataInfo?.storeInfo.storeClosetime ?? ""}"))}",
+                        "Morning 6AM to 10AM every day.",
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      catDRow(
+                        img: "assets/clock.png",
+                        text:
+                        "Evening 5PM to 8PM every day.",
                       ),
                       SizedBox(
                         height: 20,
@@ -523,9 +533,7 @@ class _AboutScreenState extends State<AboutScreen>
                         width: 60,
                         alignment: Alignment.center,
                         child: Text(
-                          storeDataContoller.storeDataInfo?.reviewdata[index]
-                                  .userTitle[0] ??
-                              "",
+                          storeDataContoller.storeDataInfo?.reviewdata[index].userTitle[0] ?? "",
                           style: TextStyle(
                             fontFamily: FontFamily.gilroyBold,
                             fontSize: 22,
@@ -537,9 +545,7 @@ class _AboutScreenState extends State<AboutScreen>
                         ),
                       ),
                       title: Text(
-                        storeDataContoller
-                                .storeDataInfo?.reviewdata[index].userTitle ??
-                            "",
+                        storeDataContoller.storeDataInfo?.reviewdata[index].userTitle ?? "",
                         style: TextStyle(
                           color: BlackColor,
                           fontFamily: FontFamily.gilroyBold,
@@ -547,12 +553,7 @@ class _AboutScreenState extends State<AboutScreen>
                         ),
                       ),
                       subtitle: Text(
-                        storeDataContoller
-                                .storeDataInfo?.reviewdata[index].reviewDate
-                                .toString()
-                                .split(" ")
-                                .first ??
-                            "",
+                        storeDataContoller.storeDataInfo?.reviewdata[index].reviewDate.toString().split(" ").first ?? "",
                         textAlign: TextAlign.start,
                         maxLines: 2,
                         style: TextStyle(
